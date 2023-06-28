@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,9 +35,12 @@ public class PostService {
         //DB조회
         return postRepository.findAllByOrderByModifiedAtDesc().stream().map(PostResponseDto::new).collect(Collectors.toList());
     }
+    public PostResponseDto getPostById(Long id) {
+        Post post = postRepository.findById(id).orElseThrow(() -> new NoSuchElementException("해당ID의 게시글이 없습니다."));
+        return new PostResponseDto(post);
+    }
 
     public List<PostResponseDto> getPostsByKeyword(String keyword) {
-        System.out.println("서비스입니다");
         return postRepository.findAllByContentContainsIgnoreCaseOrderByModifiedAtDesc(keyword).stream().map(PostResponseDto::new).toList();
     }
 

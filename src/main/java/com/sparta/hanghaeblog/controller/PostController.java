@@ -30,11 +30,11 @@ public class PostController {
         return postService.getPostsByKeyword(keyword);
     }
 
-//    //특정 글 조회
-//    @GetMapping("/posts/{id}")
-//    public PostResponseDto getPostById(@PathVariable Long id) {
-//        return postService.getPostById(id);
-//    }
+    //특정 글 조회
+    @GetMapping("/posts/{id}")
+    public PostResponseDto getPostById(@PathVariable Long id) {
+        return postService.getPostById(id);
+    }
 
     // 글 생성
     @PostMapping("/posts")
