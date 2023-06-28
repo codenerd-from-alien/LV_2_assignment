@@ -24,11 +24,17 @@ public class PostController {
         return postService.getPosts();
     }
 
-    // 특정 글 조회
-    @GetMapping("/posts/{id}")
-    public PostResponseDto getPostById(@PathVariable Long id) {
-        return postService.getPostById(id);
+    @GetMapping("/posts/contents")
+    public List<PostResponseDto> getPostsByKeyword(@RequestParam String keyword){
+        System.out.println("컨트롤러입니다");
+        return postService.getPostsByKeyword(keyword);
     }
+
+//    //특정 글 조회
+//    @GetMapping("/posts/{id}")
+//    public PostResponseDto getPostById(@PathVariable Long id) {
+//        return postService.getPostById(id);
+//    }
 
     // 글 생성
     @PostMapping("/posts")

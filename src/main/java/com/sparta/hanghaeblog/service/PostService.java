@@ -35,13 +35,9 @@ public class PostService {
         return postRepository.findAllByOrderByModifiedAtDesc().stream().map(PostResponseDto::new).collect(Collectors.toList());
     }
 
-//    public List<PostResponseDto> getPostsByKeword(String keyword) {
-//        return postRepository.findAllByTitleContainsOrContentContainsOrderByModifiedAtDesc(keyword).stream().map(PostResponseDto::new).toList();
-//    }
-
-    public PostResponseDto getPostById(Long id) {
-        Post post = findPost(id);
-        return new PostResponseDto(post);
+    public List<PostResponseDto> getPostsByKeyword(String keyword) {
+        System.out.println("서비스입니다");
+        return postRepository.findAllByContentContainsIgnoreCaseOrderByModifiedAtDesc(keyword).stream().map(PostResponseDto::new).toList();
     }
 
     @Transactional

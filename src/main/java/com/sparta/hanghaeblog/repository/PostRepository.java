@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
     List<Post> findAllByOrderByModifiedAtDesc();
-    List<Post> findAllByTitleContainsOrContentContainsOrderByModifiedAtDesc(String titleKeyword, String contentKeyword);
+    List<Post> findAllByContentContainsIgnoreCaseOrderByModifiedAtDesc (String keyword);
 }

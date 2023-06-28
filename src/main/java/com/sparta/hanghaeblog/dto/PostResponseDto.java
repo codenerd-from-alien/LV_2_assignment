@@ -22,4 +22,8 @@ public class PostResponseDto {
         this.createdAt = post.getCreatedAt();
         this.modifiedAt = post.getModifiedAt();
     }
+//    public PostResponseDto getPostById(Long id) {
+//        Post post = findPost(id);
+//        return new PostResponseDto(post);
+//    }
 }
