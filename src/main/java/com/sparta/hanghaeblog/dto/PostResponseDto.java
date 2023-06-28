@@ -22,8 +22,4 @@ public class PostResponseDto { //reponse에 final을 왜 붙여도 될까? 자�
         this.createdAt = post.getCreatedAt();
         this.modifiedAt = post.getModifiedAt();
     }
-//    public PostResponseDto getPostById(Long id) {
-//        Post post = findPost(id);
-//        return new PostResponseDto(post);
-//    }
 }
