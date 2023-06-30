@@ -7,7 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-//@require
 public class SuccessResponse {
-    private String message; //final이 붙어있어야한다. 왜일까
+    private String message;
 }

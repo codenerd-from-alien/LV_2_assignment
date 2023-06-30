@@ -10,15 +10,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//스프링 로그 4j검색해볼것 : 스프링에서 안전하게 로그를 찍는 방법. /왜 sout을 찍으면 안될까? 찾아보기
-@RequiredArgsConstructor //final로 선언된 애들에 대해서 생성자를 직접 만들어준다.
+@RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/posts")//posts도 공통이니 posts도 추가할것
+@RequestMapping("/api/posts")
 public class PostController {
-    private final PostService postService; //final이 붙을 때 무조건 생성자를 생성해주거나 바로 초기화해줘야함 & 객체의 주소값이 불변 //왜 이렇게 할까?
+    private final PostService postService;
     // 글 목록 조회
     @GetMapping("")
-    public List<PostResponseDto> getPosts() { //List로하면 다른곳에서 수정이 가능하다. //List말고 PostReponseDto자체로 써서 명확하게 선언해주는걸 선호한다.
+    public List<PostResponseDto> getPosts() {
         return postService.getPosts();
     }
 
@@ -37,18 +36,18 @@ public class PostController {
     @PostMapping("")
     public PostResponseDto createPost(@RequestBody PostRequestDto requestDto) {
         return postService.createPost(requestDto);
-    } //생성과 수정은 역할을 분리하는게 좋다 생성과 수정의 대한 DTO를 분리하는게 좋다 PostCreateDto, PostUpdateDto를 분리하는게 좋다.
+    }
 
     // 글 수정
-    @PutMapping("/{id}") //putmapping과 Patch매핑 한번 검색해보기 상황에 따라 뭐가 맞는지
-    public Long updatePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto) { //왜 래퍼클래스 Long을 썼는지 ; 힌트 : null을 받을 수 있냐 없냐? long으로 쓰면 null받을 수 없다. argument resolver관련된것.
+    @PutMapping("/{id}")
+    public Long updatePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto) {
         return postService.updatePost(id, requestDto);
     }
 
     // 글 삭제
-    @DeleteMapping("/{id}") //삭제방법에 대해서 다시 고민해보기, data.message가 삭제되었다는 방식으로
+    @DeleteMapping("/{id}")
     public SuccessResponse deletePost(@PathVariable Long id, @RequestBody PasswordDto passwordDto) {
-        postService.deletePost(id, passwordDto.getPassword()); //왜 굳이 get을 써서 password를 가져왔는지
+        postService.deletePost(id, passwordDto.getPassword());
         return new SuccessResponse("게시글이 삭제되었습니다.");
     }
 }

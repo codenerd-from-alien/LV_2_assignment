@@ -4,28 +4,22 @@ import com.sparta.hanghaeblog.dto.PostRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Entity // JPA가 관리할 수 있는 Entity 클래스 지정
+@Entity
 @Getter
-//@Setter
-@Table(name = "posts") // 매핑할 테이블의 이름을 지정
+@Table(name = "posts")
 @NoArgsConstructor
 public class Post extends Timestamped{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(name = "title", nullable = false)
     private String title;
-
     @Column(name = "content", nullable = false, length = 1000)
     private String content;
-
     @Column(name = "author", nullable = false)
     private String author;
-
     @Column(name = "password", nullable = false)
     private String password;
 
